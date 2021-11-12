@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import CharacterTable from './components/CharacterTable';
+import EditCharacter from './components/EditCharacter';
+import AddCharacter from './components/AddCharacter';
+import { CharacterProvider } from './components/CharacterListContext';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <CharacterProvider>
+        <Routes>
+          <Route path='/' element={<CharacterTable />}></Route>
+          <Route path='/edit/:characterId' element={<EditCharacter />}></Route>
+          <Route path='/add' element={<AddCharacter />}></Route>
+        </Routes>
+      </CharacterProvider>
     </div>
   );
 }
